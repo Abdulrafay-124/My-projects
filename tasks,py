@@ -1,0 +1,56 @@
+tasks = []
+
+
+def add_task(task):
+    tasks.append({"task": task, "completed": False})
+
+
+def view_tasks():
+    for index, task in enumerate(tasks):
+        print(f"{index + 1}. [{'X' if task['completed'] else ' '}] {task['task']}")
+
+
+def completed_task(task_index):
+    if 0 < task_index <= len(tasks):
+        tasks[task_index - 1]['completed'] = True
+    else:
+        print("Invalid task Index!")
+
+
+def delete_task(task_index):
+    if 0 < task_index <= len(tasks):
+        del tasks[task_index - 1]
+    else:
+        print('Invalid task Index!')
+
+def main():
+    while True:
+        print("\n To-do list menu:")
+        print(" 1. Add task ")
+        print("2. View Task ")
+        print("3. Mark as completed")
+        print("4. Delete Task")
+        print("5. Exit")
+
+        choice = input("Enter your choice: ")
+
+        if choice == '1':
+            task = input("Enter task Description : ")
+            add_task(task)
+        elif choice == '2':
+            view_tasks()
+        elif choice == '3':
+            task_index = int(input("Enter task to be marked as completed: "))
+            completed_task(task_index)
+        elif choice == '4':
+            task_index = int(input("Enter task to be deleted: "))
+            delete_task(task_index)
+        elif choice == '5':
+            print("Goodbye !")
+            break
+        else:
+            print("Invalid choice, Please choose again.")
+
+
+if __name__ == '__main__':
+    main()
